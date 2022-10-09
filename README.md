@@ -2,24 +2,23 @@
 
 ## 1 Create a package
 
-Navigate into ros2_ws/src and run the package creation command:
+Run the package creation command by going to ros2 ws/src:
 
 ```
 ros2 pkg create --build-type ament_python py_pubsub
 ```
-A notification from your terminal confirming the creation of your package py pubsub and all of its required files and folders will be shown.
+Your terminal will display a message confirming the creation of your package py pubsub and all of its necessary files and folders.
 
 ## 2 Write the publisher node
 
-Navigate into ros2_ws/src/py_pubsub/py_pubsub and by executing the following command, the example talker code can be downloaded:
-
+You can download the example talker code by going to ros2 ws/src/py pubsub/py pubsub and typing the following command:
 ```
 wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py
 ```
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/19.PNG)
 
-A new file called publisher member function.py will now be present next to __init .py.
-Use the text editor of your choice to open the file.
+The __init.py file will now be followed by a new one called publisher member function.py.
+Open the file in your preferred text editor.
 
 ```
 import rclpy
@@ -64,18 +63,16 @@ if __name__ == '__main__':
 ```
 ## 2.1 Add dependencies
 
-Navigate one level back to the ros2_ws/src/py_pubsub directory, where the setup.py, setup.cfg, and package.xml files have been created for you.
+Return one level up to the setup.py, setup.cfg, and package.xml files that have been produced for you in the ros2 ws/src/py pubsub directory.
 
-Use your text editor to open package.xml, and be sure to complete the description>, maintainer>, and license> tags:
-
+Open package.xml in your text editor, and make sure the description>, maintainer>, and license> tags are full.
 ```
 <description>Examples of minimal publisher/subscriber using rclpy</description>
 <maintainer email="you@email.com">Your Name</maintainer>
 <license>Apache License 2.0</license>
 ```
 
-Add the following dependencies following the lines above that match to the import declarations for your node:
-
+After the lines above that correspond to the import declarations for your node, add the following dependencies:
 ```
 <exec_depend>rclpy</exec_depend>
 <exec_depend>std_msgs</exec_depend>
@@ -83,22 +80,20 @@ Add the following dependencies following the lines above that match to the impor
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/20.PNG)
 
-This declares that when the package's code is executed, rclpy and std msgs are required.
+This states that rclpy and std msgs are necessary for the package's code to run.
 
-Ensure that the file is saved.
+Make care to save the file.
 
 ## 2.2 Add an entry point
 
-Check out the setup.py file. Make sure to match the maintainer, maintainer email, description, and license columns to your package.xml once more:
-
+Take a look at setup.py. Make sure to check your package.xml one more time to make sure the maintainer, maintainer email, description, and license columns match:
 ```
 maintainer='YourName',
 maintainer_email='you@email.com',
 description='Examples of minimal publisher/subscriber using rclpy',
 license='Apache License 2.0',
 ```
-Within the console scripts brackets of the entry points field, add the following line:
-
+Add the next line to the entry points field between the console scripts brackets:
 ```
 entry_points={
         'console_scripts': [
@@ -113,21 +108,20 @@ Remember to save.
 
 ## 2.3 Check setup.cfg
 
-The setup.cfg file should automatically contain the following information:
-
+The following details should be included by default in the setup.cfg file:
 ```
 [develop]
 script-dir=$base/lib/py_pubsub
 [install]
 install-scripts=$base/lib/py_pubsub
 ```
-Simply instruct setuptools to place your executables in the lib directory, where ros2 run will look for them.
+Tell setuptools to put your executables in the lib directory so that ros2 run knows where to find them.
 
-If you wanted to see the entire system in action, you could build your package right now, source the local setup files, and launch it. However, let's first create the subscriber node.
+You could create your package right now, source the local setup files, and launch it if you wanted to see the full system in operation. Let's first, though, establish the subscriber node.
 
 ## 3 Write the subscriber node
 
-The next node can be created by going back to ros2 ws/src/py pubsub/py pubsub. Fill out your terminal with the following code:
+Returning to ros2 ws/src/py pubsub/py pubsub will allow you to create the following node. The following code should be entered into your terminal:
 
 ```
 wget https://raw.githubusercontent.com/ros2/examples/foxy/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py
@@ -138,8 +132,7 @@ Now, the directory must include the following files:
 __init__.py  publisher_member_function.py  subscriber_member_function.py
 ```
 
-Now, Open the subscriber_member_function.py with your text editor.
-
+Now open your text editor and navigate to subscriber member function.py.
 ```
 import rclpy
 from rclpy.node import Node
@@ -182,8 +175,7 @@ if __name__ == '__main__':
 
 ## 3.1 Add an entry point
 
-Reopen setup.py and place the subscriber node's entry point beneath the publisher's entry point. Now, the entry points field should be as follows:
-
+Reopen setup.py and put the publisher's entry point below the subscriber node's entry point. Now, the entry points field ought to read:
 ```
 entry_points={
         'console_scripts': [
@@ -195,11 +187,11 @@ entry_points={
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/22.PNG)
 
-Once the file has been saved, your pub/sub system should be operational.
+Your pub/sub system should be functional when the file has been saved.
 
 ## 4 Build and Run
 
-The rclpy and std msgs packages are probably already installed on your ROS 2 system. Before building, it's best practice to run rosdep in the workspace's root directory (ros2 ws) to check for any missing dependencies:
+On your ROS 2 system, the rclpy and std msgs packages are presumably already installed. The ideal technique is to run rosdep in the workspace's root directory (ros2 ws) before building to see if any dependencies are missing:
 
 ```
 rosdep install -i --from-path src --rosdistro foxy -y
@@ -212,8 +204,7 @@ colcon build --packages-select py_pubsub
 ```
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/23.PNG)
 
-Open a new terminal, navigate to ros2_ws, and source the setup files:
-
+Navigate to ros2 ws in a new terminal, then source the setup files:
 ```
 . install/setup.bash
 ```
@@ -223,7 +214,7 @@ Now run the talker node:
 ```
 ros2 run py_pubsub talker
 ```
-Starting in 0.5 seconds, the terminal should begin sending out info messages as follows:
+The terminal should start sending the following info messages in 0.5 seconds:
 
 ```
 [INFO] [minimal_publisher]: Publishing: "Hello World: 0"
@@ -235,13 +226,12 @@ Starting in 0.5 seconds, the terminal should begin sending out info messages as 
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/24.PNG)
 
-Launch a new terminal, once more source the setup files from ros2 ws, and then launch the listener node:
+In 0.5 seconds, the terminal should begin transmitting the following informational messages:
 
 ```
 ros2 run py_pubsub listener
 ```
-
-Starting at the publisher's current message count, the listener will begin writing messages to the console as follows:
+The listener will start writing messages to the console starting at the publisher's current message count as follows:
 
 ```
 [INFO] [minimal_subscriber]: I heard: "Hello World: 10"
@@ -253,28 +243,25 @@ Starting at the publisher's current message count, the listener will begin writi
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/25.PNG)
 
-Enter Ctrl+C in each terminal to stop the nodes from spinning
+Ctrl+C will stop the nodes from rotating in each terminal.
 
 # A Simple Service and Client 
 
 ## 1 Create a package
-
-Navigate into ros2_ws/src and run the package creation command:
-
+Run the package creation command by going to ros2 ws/src:
 ```
 ros2 pkg create --build-type ament_python py_srvcli --dependencies rclpy example_interfaces
 ```
 
-A notification from your terminal confirming the creation of your package py_srvcli and all of its required files and folders will be shown.
+You will see confirmation from your terminal that your package py srvcli and all of its necessary files and folders have been created.
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/26.PNG)
 
 ## 1.1 Update (package.xml)
 
-You don't need to manually add dependencies to package.xml because you used the --dependencies option when creating the package.
+Because you used the —dependencies option when generating the package, you don't need to manually add dependencies to package.xml.
 
-But as always, remember to fill up package.xml with the description, maintainer's name and email, and license details.
-
+But as always, don't forget to include the description, license information, and the name and email of the maintainer in package.xml.
 ```
 <description>Python client server tutorial</description>
 <maintainer email="you@email.com">Your Name</maintainer>
@@ -284,8 +271,7 @@ But as always, remember to fill up package.xml with the description, maintainer'
 
 ## 1.2 Update (setup.py)
 
-The maintainer, maintainer email, description, and license fields should all have the following information added to the setup.py file:
-
+The following details should be added to the setup.py file's description, maintainer, maintainer email, and license fields:
 ```
 maintainer='Your Name',
 maintainer_email='you@email.com',
@@ -297,7 +283,7 @@ license='Apache License 2.0',
 
 ## 2 Write the service node
 
-Create a new file called service_member_function.py in the ros2 ws/src/py_srvcli/py_srvcli directory, and then paste the following code inside:
+In the ros2 ws/src/py srvcli/py srvcli directory, make a new file called service member function.py, and then paste the following code inside:
 
 ```
 from example_interfaces.srv import AddTwoInts
@@ -335,9 +321,9 @@ if __name__ == '__main__':
 
 ## 2.1 Add an entry point
 
-The entry point must be added to setup.py (found in the ros2 ws/src/py srvcli directory) in order for the ros2 run command to be able to execute your node.
+For the ros2 run command to be able to run your node, the entry point must be added to setup.py (located in the ros2 ws/src/py srvcli directory).
 
-The following line to be added in between the "console scripts" brackets:
+In between the "console scripts" brackets, the following line should be added:
 
 ```
 'service = py_srvcli.service_member_function:main',
@@ -347,7 +333,7 @@ The following line to be added in between the "console scripts" brackets:
 
 ## 3 Write the client node
 
-Create a new file called client_member_function.py in the ros2 ws/src/py_srvcli/py_srvcli directory, and then paste the following code inside:
+In the ros2 ws/src/py srvcli/py srvcli directory, make a new file called client member function.py, and then paste the following code inside:
 
 ```
 import sys
@@ -393,11 +379,9 @@ if __name__ == '__main__':
 
 
 ## 3.1 Add an entry point
+Similar to how the service node needs an entry point, the client node also needs one.
 
-The client node requires an entry point to be added, much like the service node does.
-
-Your setup.py file's entry points column needs to be formatted as follows:
-
+The entry points column in your setup.py file must be formatted as follows:
 ```
 entry_points={
     'console_scripts': [
@@ -411,13 +395,12 @@ entry_points={
 
 ## 4 Build and Run
 
-To check for missing dependencies before building, it's a good idea to run rosdep in the workspace's root directory (ros2 ws):
+Running rosdep in the workspace's root directory (ros2 ws) is a good idea to see if any dependencies are missing before building:
 
 ```
 rosdep install -i --from-path src --rosdistro foxy -y
 ```
-
-Navigate back to the root of your workspace, ros2_ws, and build your new package:
+Go back to ros2 ws, the workspace's root, and create your new package:
 
 ```
 colcon build --packages-select py_srvcli
@@ -430,21 +413,19 @@ Open a new terminal, navigate to ros2_ws, and source the setup files:
 ```
 . install/setup.bash
 ```
-
-Now run the service node:
-
+Run the service node right now:
 ```
 ros2 run py_srvcli service
 ```
-The node will await the request from the client.
+The node will hold off until the client makes a request.
 
-Open a new terminal and once more source the setup files from ros2_ws. the client node, any two integers, and a space between them.
+Re-source the setup files from ros2 ws in a new terminal. The client node, any two integers, and a space between them.
 
 ```
 ros2 run py_srvcli client 2 3
 ```
 
-The client would get a response like this if you selected options 2 and 3 as an example:
+If you chose options 2 and 3 as an illustration, the customer would receive a response similar to this:
 
 ```
 [INFO] [minimal_client_async]: Result of add_two_ints: for 2 + 3 = 5
@@ -452,7 +433,7 @@ The client would get a response like this if you selected options 2 and 3 as an 
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/32.PNG)
 
-The terminal where your service node is executing should be visited again. When it received the request, as you can see, it published the following log messages:
+You should return to the terminal where your service node is running. As you can see, it published the following log statements after receiving the request:
 
 ```
 [INFO] [minimal_service]: Incoming request
@@ -461,7 +442,7 @@ a: 2 b: 3
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/33.PNG)
 
-Enter Ctrl+C in each terminal to stop the nodes from spinning
+Ctrl+C will stop the nodes from rotating in each terminal.
 
 # Creating custom msg and srv files
 
@@ -473,9 +454,9 @@ Navigate into ros2_ws/src and run the package creation command:
 ros2 pkg create --build-type ament_cmake tutorial_interfaces
 ```
 
-A notification from your terminal confirming the creation of your package tutorial_interfaces and all of its required files and folders will be shown. It should be noted that it is a CMake package because pure Python packages cannot yet generate.msg or.srv files. A Python node, which will be discussed in the last part, can use a custom interface that you design in a CMake package.
+Your terminal will display a message confirming the establishment of your package tutorial interfaces and every file and folder it needs. Due to the fact that pure Python packages cannot currently generate.msg or.srv files, it should be stated that this is a CMake package. A custom interface that you create in a CMake package can be used by a Python node, which will be covered in the last section.
 
-Maintaining.msg and.srv files in separate locations within a package is excellent practice. In ros2 ws/src/tutorial interfaces, create the directories.
+It's best practice to keep.msg and.srv files separated in different places within a package. The directories should be made in the ros2 ws/src/tutorial interfaces.
 
 ```
 mkdir msg
@@ -489,24 +470,24 @@ mkdir srv
 
 ## 2.1 msg definition 
 
-Create a new file called Num.msg in the tutorial interfaces/msg directory that you just made, then add a single line of code stating the data structure in Num.msg:
+In the tutorial interfaces/msg directory that you just created, make a new file named Num.msg, and then add a single line of code describing the data structure in Num.msg:
 
 ```
 int64 num
 ```
-This custom message transmits the 64-bit integer num, which is one single value.
+This custom message sends a single value, the 64-bit integer num.
 
-Create a new file called Sphere.msg in the tutorial interfaces/msg directory that you just established and fill it with the following information:
+In the directory you just created for the tutorial interfaces/msg, make a new file called Sphere.msg and put the following information in it:
 
 ```
 geometry_msgs/Point center
 float64 radius
 ```
-This custom message makes use of a message from a different message package (in this case, geometry msgs/Point).
+A message from a different message package—in this case, geometry msgs/Point—is used in this custom message.
 
 ## 2.2 srv definition
 
-Create a new file called AddThreeInts.srv with the following request and response structure back in the tutorial interfaces/srv directory you just made:
+In the instructional interfaces/srv directory that you just created, add a new file with the name AddThreeInts.srv with the following request and response structure:
 
 ```
 int64 a
@@ -515,13 +496,13 @@ int64 c
 ---
 int64 sum
 ```
-This is a custom service that accepts three integers with names a, b, and c and returns an answer with the integer sum.
+This custom service accepts the three integers a, b, and c and provides the answer's integer sum.
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/36.png)
 
 ## 3 CMakeLists.txt
 
-Add the following lines to CMakeLists.txt to translate the interfaces you defined into language-specific code (such C++ and Python) so they may be utilized in those languages:
+The interfaces you defined can be used in C++ and Python by adding the following lines to CMakeLists.txt to convert them into language-specific code:
 
 ```
 find_package(geometry_msgs REQUIRED)
@@ -537,7 +518,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 ## 4 package.xml
 
-These lines should be added to package.xml.
+To package.xml, these lines should be added.
 
 ```
 <depend>geometry_msgs</depend>
@@ -551,24 +532,25 @@ These lines should be added to package.xml.
 
 ## 5 Build the tutorial_interfaces package
 
-You may construct your custom interfaces package now that all of its components are in place. Run the command below in the workspace's root (~/ros2_ws):
+Now that all of the pieces of your custom interfaces package are in place, you can build it. Run the following command in the workspace's root directory (/ros2 ws):
+
 
 ```
 colcon build --packages-select tutorial_interfaces
 ```
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/37.png)
 
-Other ROS 2 programs will now be able to find the interfaces.
+Now, other ROS 2 applications will be able to locate the interfaces.
 
 ## 6 Confirm msg and srv creation
 
-Run the following command from within your workspace (ros2 ws) to source it in a new terminal:
+To source it in a new terminal, issue the following command from within your workspace (ros2 ws):
 
 ```
 . install/setup.bash
 ```
 
-The ros2 interface show command can now be used to verify that your interface creation was successful:
+You can now check that your interface creation was successful by using the ros2 interface show command:
 
 ```
 ros2 interface show tutorial_interfaces/msg/Num
@@ -605,11 +587,11 @@ int64 sum
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/38.png)
 ## 7 Test the new interfaces
 
-You can utilize the packages you made in earlier instructions for this step. You may use your new interfaces by making a few straightforward changes to the nodes, CMakeLists, and package files.
+For this stage, you can make use of the packages you created earlier. A few simple adjustments to the nodes, CMakeLists, and package files will enable you to use your new interfaces.
 
 ## 7.1 Testing Num.msg with pub/sub
 
-You may see Num.msg in action by making a few minor adjustments to the publisher/subscriber package developed in a prior tutorial (C++ or Python). The output will be slightly different because you'll be switching from the default string message to a numerical one.
+Making a few little tweaks to the publisher/subscriber package created in a previous tutorial (in C++ or Python) will allow you to observe Num.msg in action. You'll be changing the default string message to a numerical one, which will result in a little change in the output.
 
 Publisher:
 
@@ -724,7 +706,7 @@ Add the following line:
 <exec_depend>tutorial_interfaces</exec_depend>
 ```
 
-After making the above edits and saving all the changes, build the package:
+Create the package after making the aforementioned adjustments and saving your work.
 
 ```
 colcon build --packages-select py_pubsub
@@ -735,7 +717,7 @@ On Windows:
 colcon build --merge-install --packages-select py_pubsub
 ```
 
-Then open two new terminals, source ros2_ws in each, and run:
+Then open two fresh terminals, run source ros2 ws in each, and do the following:
 
 ```
 ros2 run py_pubsub talker
@@ -751,7 +733,7 @@ ros2 run py_pubsub listener
 
 ![image](https://github.com/thapapradeep884/IMAGE/blob/main/40.png)
 
-The talker should only be publishing integer values as opposed to the string it previously published as Num.msg only relays an integer:
+As opposed to the text it previously published as Num.msg only relays an integer, the talker should only be broadcasting integer values:
 
 ```
 [INFO] [minimal_publisher]: Publishing: '0'
@@ -761,7 +743,8 @@ The talker should only be publishing integer values as opposed to the string it 
 
 ## 7.2 Testing AddThreeInts.srv with service/client
 
-You may use AddThreeInts.srv by making a few minor adjustments to the service/client package developed in a prior tutorial (in C++ or Python). The output will alter significantly because you'll be switching from the initial two integer request srv to a three integer request srv.
+AddThreeInts.srv can be used by making a few small changes to the service/client package created in a previous tutorial (in C++ or Python). Because you'll be changing from the initial two integer request srv to a three integer request srv, the result will be drastically different.
+
 
 Service:
 
@@ -885,7 +868,7 @@ Add the following line:
 <exec_depend>tutorial_interfaces</exec_depend>
 ```
 
-After making the above edits and saving all the changes, build the package:
+Create the package after making the aforementioned adjustments and saving your work.
 
 ```
 colcon build --packages-select py_srvcli
@@ -897,7 +880,7 @@ On Windows:
 colcon build --merge-install --packages-select py_srvcli
 ```
 
-Then open two new terminals, source ros2_ws in each, and run:
+then launch two fresh terminals, enter source ros2 ws into each, and execute:
 
 ```
 ros2 run py_srvcli service
